@@ -1,280 +1,147 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
 import { useLanguage } from "@/components/LanguageContext";
-import { SUPPORTED_LANGUAGES } from "@/lib/i18n";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { 
+  Trophy, 
+  Menu, 
+  X, 
+  Globe,
+  Award,
+  Sparkles
+} from "lucide-react";
+import { useUserProgress } from "../UserProgressContext";
 
 export default function Navbar() {
   const { t, lang, setLang } = useLanguage();
+  const { points } = useUserProgress();
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [langOpen, setLangOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const navLinks = [
-    { label: t.nav.home, href: "#home" },
-    { label: t.nav.howToVote, href: "#how-to-vote" },
-    { label: t.nav.timeline, href: "#timeline" },
-    { label: t.nav.eligibility, href: "#eligibility" },
-    { label: t.nav.faq, href: "#faq" },
+    { name: "How to Vote", href: "/how-to-vote" },
+    { name: "Constituency", href: "/constituency" },
+    { name: "Simulator", href: "/simulator" },
+    { name: "AI Chat", href: "/chat" },
+    { name: "Myths", href: "/myths" },
   ];
 
   return (
     <nav
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 100,
-        transition: "all 0.3s ease",
-        background: scrolled
-          ? "rgba(13,27,62,0.95)"
-          : "transparent",
-        backdropFilter: scrolled ? "blur(20px)" : "none",
-        WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(255,255,255,0.08)" : "none",
-        boxShadow: scrolled ? "0 4px 30px rgba(0,0,0,0.3)" : "none",
-      }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-white/90 backdrop-blur-xl border-b border-slate-200 shadow-xl"
+          : "bg-slate-900/40 backdrop-blur-md border-b border-white/10"
+      }`}
     >
-      {/* Tricolor bar at top */}
-      <div
-        style={{
-          height: "3px",
-          background: "linear-gradient(90deg, #FF6B00 33.3%, #F8F8F8 33.3%, #F8F8F8 66.6%, #138808 66.6%)",
-        }}
-      />
+      {/* Tricolor Accent */}
+      <div className="h-[3px] w-full bg-gradient-to-r from-[#FF9933] via-white to-[#138808]" />
 
-      <div
-        style={{
-          maxWidth: "1280px",
-          margin: "0 auto",
-          padding: "0 24px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          height: "68px",
-        }}
-      >
+      <div className="container h-24 flex items-center justify-between">
         {/* Logo */}
-        <Link
-          href="#home"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "10px",
-            textDecoration: "none",
-          }}
-        >
-          <div
-            style={{
-              width: "38px",
-              height: "38px",
-              borderRadius: "50%",
-              background: "linear-gradient(135deg, #FF6B00, #FFD700)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "20px",
-              boxShadow: "0 4px 12px rgba(255,107,0,0.4)",
-              flexShrink: 0,
-            }}
-          >
-            🗳️
+        <Link href="/" className="flex items-center gap-4 group">
+          <div className="relative">
+            <div className="w-12 h-12 rounded-2xl bg-[#0F172A] flex items-center justify-center shadow-2xl group-hover:rotate-6 transition-transform">
+              <span className="text-white font-black text-lg">EG</span>
+            </div>
+            <div className="absolute inset-0 bg-blue-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity" />
           </div>
           <div>
-            <div
-              style={{
-                fontSize: "1.15rem",
-                fontWeight: 800,
-                color: "white",
-                letterSpacing: "-0.02em",
-                lineHeight: 1,
-              }}
-            >
-              Electra<span style={{ color: "#FF8C42" }}>Guide</span>
+            <div className={`font-black text-2xl tracking-tighter leading-none ${scrolled ? "text-[#0F172A]" : "text-white"}`}>
+              Electra<span className="text-[#FF9933]">Guide</span>
             </div>
-            <div
-              style={{
-                fontSize: "0.65rem",
-                color: "rgba(255,255,255,0.6)",
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                marginTop: "2px",
-              }}
-            >
-              {lang === "hi" ? "भारत का चुनाव गाइड" : "India's Election Guide"}
+            <div className={`text-[10px] uppercase font-black tracking-[0.2em] mt-1 ${scrolled ? "text-slate-400" : "text-slate-300"}`}>
+              {lang === "hi" ? "भारत का चुनाव गाइड" : "India's Election Assistant"}
             </div>
           </div>
         </Link>
 
-        {/* Desktop Nav Links */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "4px",
-          }}
-          className="desktop-nav"
-        >
+        {/* Desktop Links */}
+        <div className="hidden lg:flex items-center gap-2">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
-              className="nav-link"
-              style={{ padding: "6px 12px" }}
+              className={`px-5 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all ${
+                pathname === link.href
+                  ? "bg-[#0F172A] text-white"
+                  : scrolled
+                  ? "text-slate-600 hover:bg-slate-100"
+                  : "text-white/80 hover:bg-white/10"
+              }`}
             >
-              {link.label}
-            </a>
+              {link.name}
+            </Link>
           ))}
         </div>
 
-        {/* Right Controls */}
-        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          {/* Language Toggle */}
-          <div style={{ position: "relative" }}>
-            <button
-              onClick={() => setLangOpen(!langOpen)}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "6px",
-                background: "rgba(255,255,255,0.12)",
-                border: "1px solid rgba(255,255,255,0.2)",
-                borderRadius: "9999px",
-                padding: "6px 14px",
-                color: "white",
-                fontSize: "0.85rem",
-                fontWeight: 500,
-                cursor: "pointer",
-                transition: "all 0.2s ease",
-                backdropFilter: "blur(10px)",
-              }}
-              aria-label="Switch language"
-              id="lang-toggle"
-            >
-              🌐 {lang === "en" ? "EN" : "हि"}
-            </button>
-
-            {langOpen && (
-              <div
-                className="animate-slide-in glass"
-                style={{
-                  position: "absolute",
-                  right: 0,
-                  top: "calc(100% + 8px)",
-                  borderRadius: "12px",
-                  overflow: "hidden",
-                  minWidth: "140px",
-                  border: "1px solid rgba(255,255,255,0.2)",
-                  zIndex: 200,
-                }}
-              >
-                {SUPPORTED_LANGUAGES.map((l) => (
-                  <button
-                    key={l.code}
-                    onClick={() => { setLang(l.code); setLangOpen(false); }}
-                    style={{
-                      display: "block",
-                      width: "100%",
-                      padding: "10px 16px",
-                      background: lang === l.code ? "rgba(0,102,204,0.15)" : "transparent",
-                      border: "none",
-                      cursor: "pointer",
-                      color: lang === l.code ? "#0066CC" : "#0D1B3E",
-                      fontWeight: lang === l.code ? 600 : 400,
-                      fontSize: "0.875rem",
-                      textAlign: "left",
-                      transition: "background 0.15s ease",
-                    }}
-                  >
-                    {l.nativeLabel}
-                    {lang === l.code && " ✓"}
-                  </button>
-                ))}
-              </div>
-            )}
+        {/* Action Controls */}
+        <div className="flex items-center gap-4">
+          {/* Points */}
+          <div className={`hidden md:flex items-center gap-3 px-5 h-12 rounded-2xl border transition-all ${
+            scrolled ? "bg-slate-50 border-slate-200" : "bg-white/10 border-white/20 backdrop-blur-md"
+          }`}>
+            <Trophy size={14} className="text-[#FF9933]" />
+            <span className={`text-xs font-black tracking-widest ${scrolled ? "text-[#0F172A]" : "text-white"}`}>
+              {points} <span className="opacity-40">XP</span>
+            </span>
           </div>
 
-          {/* Ask AI CTA */}
-          <a
-            href="#chat"
-            className="btn btn-primary"
-            style={{
-              padding: "8px 20px",
-              fontSize: "0.85rem",
-              borderRadius: "9999px",
-            }}
-            id="nav-ask-ai"
-          >
-            🤖 {t.nav.askAI}
-          </a>
-
-          {/* Hamburger */}
+          {/* Lang Toggle */}
           <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            style={{
-              display: "none",
-              background: "rgba(255,255,255,0.12)",
-              border: "1px solid rgba(255,255,255,0.2)",
-              borderRadius: "8px",
-              padding: "8px",
-              cursor: "pointer",
-              color: "white",
-              fontSize: "1.2rem",
-              lineHeight: 1,
-            }}
-            aria-label="Toggle menu"
-            id="hamburger-btn"
-            className="hamburger"
+            onClick={() => setLang(lang === "en" ? "hi" : "en")}
+            className={`h-12 px-4 rounded-2xl flex flex-row items-center gap-2 font-black transition-all border ${
+              scrolled
+                ? "bg-white border-slate-200 text-[#0F172A] hover:bg-slate-50 shadow-sm"
+                : "bg-white/10 border-white/20 text-white backdrop-blur-md hover:bg-white/20"
+            }`}
           >
-            {menuOpen ? "✕" : "☰"}
+            <Globe size={14} className="opacity-40" />
+            <span className="text-[10px] uppercase">{lang === "en" ? "EN" : "HI"}</span>
+          </button>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className={`lg:hidden w-12 h-12 rounded-2xl flex items-center justify-center transition-all ${
+              scrolled ? "bg-slate-100 text-[#0F172A]" : "bg-white/10 text-white"
+            }`}
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div
-          className="animate-slide-in glass-dark"
-          style={{
-            padding: "16px 24px 24px",
-            display: "flex",
-            flexDirection: "column",
-            gap: "4px",
-          }}
-        >
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="nav-link"
-              onClick={() => setMenuOpen(false)}
-              style={{
-                display: "block",
-                padding: "10px 0",
-                borderBottom: "1px solid rgba(255,255,255,0.08)",
-                fontSize: "1rem",
-              }}
-            >
-              {link.label}
-            </a>
-          ))}
+      {/* Mobile Menu Overlay */}
+      {isOpen && (
+        <div className="lg:hidden absolute top-full left-0 right-0 bg-white border-b border-slate-200 p-6 shadow-2xl animate-fade-in-up">
+          <div className="flex flex-col gap-4">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className={`p-4 rounded-2xl text-sm font-black uppercase tracking-widest ${
+                  pathname === link.href ? "bg-[#0F172A] text-white" : "bg-slate-50 text-slate-600"
+                }`}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
         </div>
       )}
-
-      <style>{`
-        @media (max-width: 900px) {
-          .desktop-nav { display: none !important; }
-          .hamburger { display: flex !important; }
-        }
-      `}</style>
     </nav>
   );
 }

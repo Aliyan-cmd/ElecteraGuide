@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🗳️ ElectraGuide: Empowering the Indian Voter
 
-## Getting Started
+ElectraGuide is a premium, AI-powered election assistant designed to help Indian citizens navigate the electoral process with confidence and clarity. Built with a modern, high-performance tech stack, it provides a seamless experience for first-time voters and seasoned citizens alike.
 
-First, run the development server:
+![ElectraGuide Banner](public/og-image.png) *(Note: Placeholder for actual OG image)*
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Key Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **🤖 AI Election Assistant**: Multi-lingual chat assistant (English & Hindi) to answer all your election-related queries.
+- **🗺️ Constituency Tracker**: Get real-time details and candidate information for your local constituency.
+- **🎮 Voting Simulator**: Practice the voting process in a risk-free, 3D interactive environment.
+- **📅 How to Vote Guide**: A comprehensive, step-by-step roadmap from registration to the polling booth.
+- **🛡️ Myth Buster**: Fact-checked information to combat common election misinformation and rumors.
+- **🏆 Gamified Progress**: Earn points and badges as you learn more about your democratic rights.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Technology Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Framework**: [Next.js 15+](https://nextjs.org/) (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4 (Standard CSS + @theme)
+- **AI Engine**: Google Gemini Pro via AI SDK
+- **Icons**: Lucide React
+- **Animations**: Framer Motion & Custom CSS Utilities
+- **Typography**: [Outfit](https://fonts.google.com/specimen/Outfit)
 
-## Learn More
+## 🎨 Design Philosophy
 
-To learn more about Next.js, take a look at the following resources:
+ElectraGuide utilizes a **Professional Civic-Tech** aesthetic:
+- **Tricolor Accent**: Subtle nods to the Indian flag (Saffron, White, Green) throughout the UI.
+- **Glassmorphism**: Modern backdrop blurs and semi-transparent panels for a premium feel.
+- **Dark-to-Light Theme**: A primary palette focused on deep Navy (#0F172A) for authority and Slate for readability.
+- **Accessibility**: High-contrast ratios and a clear typography scale using the "Outfit" font family.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🏁 Getting Started
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Prerequisites
+- Node.js 20+
+- npm or yarn
 
-## Deploy on Vercel
+### Installation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Aliyan-cmd/ElecteraGuide.git
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables:
+   Create a `.env.local` file and add your Google Gemini API Key:
+   ```env
+   GOOGLE_GENERATIVE_AI_API_KEY=your_api_key_here
+   ```
+
+4. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🇮🇳 Made with ❤️ for India
+ElectraGuide is built to strengthen democracy by making election information accessible, engaging, and accurate.

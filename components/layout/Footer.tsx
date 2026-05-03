@@ -1,214 +1,121 @@
 "use client";
 
 import { useLanguage } from "@/components/LanguageContext";
+import { Globe, Bot, Shield } from "lucide-react";
 
 export default function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer
-      style={{
-        background: "linear-gradient(180deg, #0D1B3E 0%, #0A1530 100%)",
-        color: "white",
-        paddingTop: "64px",
-      }}
-    >
-      {/* Tricolor Accent */}
-      <div
-        style={{
-          height: "4px",
-          background: "linear-gradient(90deg, #FF6B00 33.3%, #F8F8F8 33.3%, #F8F8F8 66.6%, #138808 66.6%)",
-        }}
-      />
+    <footer className="bg-navy text-white relative overflow-hidden">
+      {/* Tricolor Accent Bar */}
+      <div className="h-1 w-full bg-gradient-to-r from-saffron via-white to-india-green" />
+      
+      {/* Background Glow */}
+      <div className="absolute bottom-0 right-0 w-[40%] h-[40%] bg-saffron/5 blur-[120px] -z-0" />
 
-      <div
-        style={{
-          maxWidth: "1280px",
-          margin: "0 auto",
-          padding: "48px 24px",
-          display: "grid",
-          gridTemplateColumns: "2fr 1fr 1fr",
-          gap: "48px",
-        }}
-        className="footer-grid"
-      >
-        {/* Brand Column */}
-        <div>
-          <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px" }}>
-            <div
-              style={{
-                width: "44px", height: "44px",
-                borderRadius: "50%",
-                background: "linear-gradient(135deg, #FF6B00, #FFD700)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                fontSize: "22px",
-                boxShadow: "0 4px 12px rgba(255,107,0,0.4)",
-              }}
-            >
-              🗳️
+      <div className="container py-20 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
+          {/* Brand Column */}
+          <div className="lg:col-span-1">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-10 h-10 rounded-xl bg-gradient-saffron flex items-center justify-center shadow-lg">
+                <span className="text-white font-black text-sm">EG</span>
+              </div>
+              <div>
+                <div className="text-xl font-black tracking-tight leading-none">
+                  Electra<span className="text-saffron">Guide</span>
+                </div>
+                <div className="text-[0.6rem] tracking-widest uppercase font-bold mt-1 text-white/50">
+                  India's Election Assistant
+                </div>
+              </div>
             </div>
-            <div>
-              <div style={{ fontSize: "1.3rem", fontWeight: 800, letterSpacing: "-0.02em" }}>
-                Electra<span style={{ color: "#FF8C42" }}>Guide</span>
-              </div>
-              <div style={{ fontSize: "0.7rem", color: "rgba(255,255,255,0.5)", letterSpacing: "0.08em", textTransform: "uppercase" }}>
-                India's Election Guide
-              </div>
+
+            <p className="text-white/60 text-sm leading-relaxed mb-8 max-w-sm">
+              {t.footer.tagline}
+            </p>
+
+            <div className="flex gap-4">
+              {[
+                { icon: <Globe size={18} />, label: "Web" },
+                { icon: <Bot size={18} />, label: "AI" },
+                { icon: <Shield size={18} />, label: "Security" },
+              ].map((s, i) => (
+                <div key={i} className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:bg-white/10 hover:text-white transition-all cursor-pointer">
+                  {s.icon}
+                </div>
+              ))}
             </div>
           </div>
 
-          <p style={{ fontSize: "0.9rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.7, marginBottom: "20px", maxWidth: "340px" }}>
-            {t.footer.tagline}
-          </p>
+          {/* Resources */}
+          <div>
+            <h4 className="text-xs font-black uppercase tracking-[0.2em] text-saffron mb-8">
+              {t.footer.links.title}
+            </h4>
+            <ul className="space-y-4">
+              {[
+                { label: t.footer.links.voterPortal, href: "https://voters.eci.gov.in" },
+                { label: t.footer.links.eciWebsite, href: "https://eci.gov.in" },
+                { label: t.footer.links.voterHelpline, href: "tel:1950" },
+              ].map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-white/60 hover:text-white transition-colors flex items-center gap-2 group"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-india-green opacity-0 group-hover:opacity-100 transition-all" />
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          <p style={{ fontSize: "0.78rem", color: "rgba(255,255,255,0.4)", lineHeight: 1.6, maxWidth: "360px" }}>
-            {t.footer.disclaimer}
-          </p>
+          {/* Quick Info */}
+          <div>
+            <h4 className="text-xs font-black uppercase tracking-[0.2em] text-saffron mb-8">
+              {t.footer.elections.title}
+            </h4>
+            <ul className="space-y-4">
+              {[
+                t.footer.elections.lokSabha,
+                t.footer.elections.stateAssembly,
+                t.footer.elections.rajyaSabha,
+              ].map((item) => (
+                <li key={item}>
+                  <a href="#" className="text-sm text-white/60 hover:text-white transition-colors flex items-center gap-2 group">
+                    <span className="w-1.5 h-1.5 rounded-full bg-ashoka-blue opacity-0 group-hover:opacity-100 transition-all" />
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          {/* Social Links */}
-          <div style={{ display: "flex", gap: "12px", marginTop: "24px" }}>
-            {[
-              { icon: "🐦", label: "Twitter" },
-              { icon: "📘", label: "Facebook" },
-              { icon: "📷", label: "Instagram" },
-              { icon: "▶️", label: "YouTube" },
-            ].map((s) => (
-              <a
-                key={s.label}
-                href="#"
-                aria-label={s.label}
-                style={{
-                  width: "36px", height: "36px",
-                  borderRadius: "50%",
-                  background: "rgba(255,255,255,0.08)",
-                  border: "1px solid rgba(255,255,255,0.12)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  fontSize: "16px",
-                  textDecoration: "none",
-                  transition: "all 0.2s ease",
-                  cursor: "pointer",
-                }}
-              >
-                {s.icon}
-              </a>
-            ))}
+          {/* Disclaimer */}
+          <div>
+            <h4 className="text-xs font-black uppercase tracking-[0.2em] text-saffron mb-8">Official Disclaimer</h4>
+            <p className="text-[0.7rem] text-white/40 leading-relaxed italic">
+              {t.footer.disclaimer}
+            </p>
           </div>
         </div>
 
-        {/* Quick Links */}
-        <div>
-          <h4
-            style={{
-              fontSize: "0.8rem",
-              fontWeight: 700,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              color: "#FF8C42",
-              marginBottom: "20px",
-            }}
-          >
-            {t.footer.links.title}
-          </h4>
-          <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "10px" }}>
-            {[
-              { label: t.footer.links.voterPortal, href: "https://voters.eci.gov.in" },
-              { label: t.footer.links.eciWebsite, href: "https://eci.gov.in" },
-              { label: t.footer.links.voterHelpline, href: "tel:1950" },
-              { label: t.footer.links.cVigil, href: "#" },
-            ].map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    color: "rgba(255,255,255,0.6)",
-                    textDecoration: "none",
-                    fontSize: "0.875rem",
-                    transition: "color 0.2s ease",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "6px",
-                  }}
-                >
-                  <span style={{ color: "#138808", fontSize: "0.6rem" }}>▶</span>
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Election Types */}
-        <div>
-          <h4
-            style={{
-              fontSize: "0.8rem",
-              fontWeight: 700,
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              color: "#FF8C42",
-              marginBottom: "20px",
-            }}
-          >
-            {t.footer.elections.title}
-          </h4>
-          <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "10px" }}>
-            {[
-              t.footer.elections.lokSabha,
-              t.footer.elections.stateAssembly,
-              t.footer.elections.rajyaSabha,
-              t.footer.elections.byElections,
-            ].map((item) => (
-              <li key={item}>
-                <a
-                  href="#"
-                  style={{
-                    color: "rgba(255,255,255,0.6)",
-                    textDecoration: "none",
-                    fontSize: "0.875rem",
-                    transition: "color 0.2s ease",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "6px",
-                  }}
-                >
-                  <span style={{ color: "#0066CC", fontSize: "0.6rem" }}>▶</span>
-                  {item}
-                </a>
-              </li>
-            ))}
-          </ul>
+        {/* Bottom Bar */}
+        <div className="mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+          <div className="text-xs text-white/40 font-medium tracking-wide">
+            {t.footer.copyright}
+          </div>
+          <div className="flex items-center gap-2 text-xs text-white/60 font-bold bg-white/5 px-6 py-3 rounded-full border border-white/5">
+            <span className="w-2 h-2 rounded-full bg-india-green animate-pulse" />
+            {t.footer.madeWith}
+          </div>
         </div>
       </div>
-
-      {/* Bottom Bar */}
-      <div
-        style={{
-          borderTop: "1px solid rgba(255,255,255,0.08)",
-          padding: "20px 24px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          maxWidth: "1280px",
-          margin: "0 auto",
-          flexWrap: "wrap",
-          gap: "12px",
-        }}
-      >
-        <p style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.4)" }}>
-          {t.footer.copyright}
-        </p>
-        <p style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.4)" }}>
-          {t.footer.madeWith}
-        </p>
-      </div>
-
-      <style>{`
-        @media (max-width: 768px) {
-          .footer-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
-        }
-      `}</style>
     </footer>
   );
 }

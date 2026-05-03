@@ -1,17 +1,17 @@
 {
   "nav": {
     "home": "Home",
-    "howToVote": "How to Vote",
-    "timeline": "Election Timeline",
-    "eligibility": "Eligibility",
-    "faq": "FAQ",
-    "askAI": "Ask AI",
-    "language": "Language"
+    "learnProcess": "Learn Process",
+    "myConstituency": "My Constituency",
+    "chatAssistant": "Chat Assistant",
+    "simulator": "Simulator",
+    "myths": "Myths",
+    "askAI": "Ask AI"
   },
   "hero": {
     "badge": "India's Election Guide",
-    "title": "Your Voice,",
-    "titleHighlight": "Your Vote",
+    "title": "Understand Your Vote",
+    "titleHighlight": "in 5 Minutes",
     "subtitle": "ElectraGuide makes Indian elections easy to understand. Get step-by-step guidance on Lok Sabha & State Assembly elections — in your language.",
     "cta": "Start Learning",
     "ctaSecondary": "Ask Our AI",
@@ -38,6 +38,48 @@
     "card5Desc": "Available in English and Hindi with more regional languages coming soon.",
     "card6Title": "Mobile First",
     "card6Desc": "Designed for rural and urban users alike — fast, lightweight, and works on any device."
+  },
+  "process": {
+    "sectionLabel": "Election Process",
+    "title": "Journey of an Election",
+    "subtitle": "From announcement to government formation",
+    "stages": [
+      {
+        "title": "Announcement & MCC",
+        "description": "The Election Commission of India announces the election dates. The Model Code of Conduct (MCC) comes into effect immediately to ensure a level playing field.",
+        "details": "The MCC regulates the conduct of political parties and candidates. No new government schemes or projects can be announced that might influence voters."
+      },
+      {
+        "title": "Nomination Filing",
+        "description": "Candidates file their nomination papers along with affidavits declaring their assets, liabilities, and criminal records (if any).",
+        "details": "Any Indian citizen over 25 years of age can contest for Lok Sabha. They must deposit a security amount and get proposers from the constituency."
+      },
+      {
+        "title": "Scrutiny & Withdrawal",
+        "description": "The Returning Officer scrutinizes the nominations. Invalid ones are rejected. Candidates can withdraw their names within a specified period.",
+        "details": "After the withdrawal deadline, the final list of contesting candidates is published, and election symbols are allocated to independent candidates."
+      },
+      {
+        "title": "Campaigning",
+        "description": "Political parties and candidates campaign to reach out to voters through rallies, door-to-door visits, and media.",
+        "details": "Campaigning must stop 48 hours before the end of polling in the respective constituency (known as the silence period)."
+      },
+      {
+        "title": "Polling Phases (7 Phases)",
+        "description": "Voters cast their votes using Electronic Voting Machines (EVMs). For national elections like Lok Sabha, this often happens across multiple phases.",
+        "details": "The 2024 Lok Sabha elections were held in 7 phases to manage logistics and security across the country's vast geography."
+      },
+      {
+        "title": "Counting of Votes",
+        "description": "EVMs from all polling stations are brought to secure counting centers. Votes are counted under the supervision of the Returning Officer and candidate agents.",
+        "details": "The VVPAT (Voter Verifiable Paper Audit Trail) slips are also matched with EVM counts in randomly selected polling stations."
+      },
+      {
+        "title": "Result Declaration & Government",
+        "description": "Results are officially declared. The party or coalition with a majority (272+ seats for Lok Sabha) is invited by the President to form the government.",
+        "details": "The newly elected MPs take their oath, and the Prime Minister and Council of Ministers are sworn in to lead the country for the next 5 years."
+      }
+    ]
   },
   "howToVote": {
     "sectionLabel": "Step-by-Step Guide",
@@ -81,6 +123,37 @@
     "seats": "Seats",
     "resultsDay": "Result Declaration",
     "resultsDate": "June 4, 2024"
+  },
+  "simulator": {
+    "title": "Interactive Voter Simulator",
+    "subtitle": "Practice your voting journey before election day",
+    "step1Title": "Check Eligibility",
+    "step2Title": "Voter Registration",
+    "step3Title": "Find Polling Booth",
+    "step4Title": "Voting Day Process",
+    "step5Title": "After Voting"
+  },
+  "constituency": {
+    "title": "My Constituency",
+    "subtitle": "Enter your PIN code or Constituency name to see detailed info",
+    "searchPlaceholder": "Search e.g. 110001 or New Delhi",
+    "searchBtn": "Search",
+    "notFound": "No records found. Try \"110001\" or \"400001\" for the demo.",
+    "selectToBegin": "Select a constituency to begin",
+    "selectDesc": "Discover historical data, turnout trends, and candidate details for your region.",
+    "liveUpdates": "Live Updates",
+    "representative": "Current Representative",
+    "turnout": "Turnout",
+    "electorate": "Total Electorate",
+    "margin": "Last Margin",
+    "importantDates": "Important Dates",
+    "pastResults": "Past Election Results",
+    "keyCandidates": "Key Candidates (2024)",
+    "viewAffidavit": "View Detailed Affidavit",
+    "year": "Year",
+    "winner": "Winner",
+    "party": "Party",
+    "marginLabel": "Margin"
   },
   "chat": {
     "title": "Ask ElectraGuide AI",
