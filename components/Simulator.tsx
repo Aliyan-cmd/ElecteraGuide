@@ -80,13 +80,20 @@ export default function Simulator() {
               <h2 className="text-2xl md:text-3xl font-bold">{t.simulator.title}</h2>
               <p className="text-white/80 mt-1">{t.simulator.subtitle}</p>
             </div>
-            <div className="bg-white/10 px-4 py-2 rounded-full backdrop-blur-md border border-white/20 text-sm font-medium">
+            <div className="bg-white/10 px-4 py-2 rounded-full backdrop-blur-md border border-white/20 text-sm font-medium" aria-hidden="true">
               Step {currentStep + 1} of {steps.length}
             </div>
           </div>
 
           {/* Progress Bar Container */}
-          <div className="relative w-full h-2 bg-white/20 rounded-full mt-8 overflow-hidden">
+          <div 
+            className="relative w-full h-2 bg-white/20 rounded-full mt-8 overflow-hidden"
+            role="progressbar"
+            aria-valuenow={calculateProgress()}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label={`Voter simulation progress: ${Math.round(calculateProgress())}%`}
+          >
             <motion.div 
               className="absolute top-0 left-0 h-full bg-gradient-saffron rounded-full"
               initial={{ width: '0%' }}
@@ -96,14 +103,16 @@ export default function Simulator() {
           </div>
 
           {/* Step Indicators */}
-          <div className="hidden md:flex justify-between mt-4">
+          <nav className="hidden md:flex justify-between mt-4" aria-label="Simulation steps">
             {steps.map((step, idx) => (
-              <div 
+              <button 
                 key={step.id} 
-                className={`flex flex-col items-center gap-2 cursor-pointer transition-colors ${
+                className={`flex flex-col items-center gap-2 transition-colors ${
                   idx <= currentStep ? 'text-white' : 'text-white/40'
                 }`}
                 onClick={() => setCurrentStep(idx)}
+                aria-current={idx === currentStep ? 'step' : undefined}
+                aria-label={`Go to step ${idx + 1}: ${step.title}`}
               >
                 <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold border-2 transition-all ${
                   idx < currentStep 
@@ -112,40 +121,40 @@ export default function Simulator() {
                       ? 'bg-saffron border-saffron text-white shadow-[0_0_15px_rgba(255,153,51,0.5)]'
                       : 'border-white/40 bg-transparent text-white/40'
                 }`}>
-                  {idx < currentStep ? <Check size={16} /> : idx + 1}
+                  {idx < currentStep ? <Check size={16} aria-hidden="true" /> : idx + 1}
                 </div>
                 <span className="text-xs font-medium tracking-wide">{step.title}</span>
-              </div>
+              </button>
             ))}
-          </div>
+          </nav>
         </div>
       </div>
 
-      {/* Main Content Area */}
-      <div className="p-6 md:p-10 min-h-[400px] flex flex-col">
+      <div className="p-6 md:p-10 min-h-[400px] flex flex-col" aria-live="polite" aria-atomic="true">
         <AnimatePresence mode="wait">
-          <motion.div
+          <motion.section
             key={currentStep}
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3 }}
             className="flex-1"
+            aria-labelledby="step-title"
           >
             <div className="max-w-3xl mx-auto">
               
               {/* Step Content Headers */}
-              <div className="mb-8 text-center md:text-left flex items-center justify-center md:justify-start gap-4">
+              <header className="mb-8 text-center md:text-left flex items-center justify-center md:justify-start gap-4">
                 <div className="w-14 h-14 bg-blue-50 text-ashoka-blue rounded-2xl flex items-center justify-center shrink-0">
                   {(() => {
                     const Icon = steps[currentStep].icon;
-                    return <Icon size={28} />;
+                    return <Icon size={28} aria-hidden="true" />;
                   })()}
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-navy">{steps[currentStep].title}</h3>
+                  <h3 id="step-title" className="text-2xl font-bold text-navy">{steps[currentStep].title}</h3>
                 </div>
-              </div>
+              </header>
 
               {/* Dynamic Content based on Step */}
               <div className="space-y-6">
@@ -337,22 +346,23 @@ export default function Simulator() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Footer Controls */}
-        <div className="mt-auto pt-8 flex justify-between items-center border-t border-gray-100">
+        <nav className="mt-auto pt-8 flex justify-between items-center border-t border-gray-100" aria-label="Simulation navigation">
           <button
             onClick={handlePrev}
             disabled={currentStep === 0}
+            aria-label="Previous Step"
             className={`btn px-6 py-3 flex items-center gap-2 ${
               currentStep === 0 
                 ? 'opacity-50 cursor-not-allowed bg-gray-100 text-gray-500' 
                 : 'bg-white border border-gray-200 text-navy hover:bg-gray-50 hover:border-gray-300'
             }`}
           >
-            <ChevronLeft size={18} /> Back
+            <ChevronLeft size={18} aria-hidden="true" /> Back
           </button>
           
           <button
             onClick={handleNext}
+            aria-label={currentStep === steps.length - 1 ? 'Finish Tutorial' : 'Next Step'}
             className={`btn px-8 py-3 flex items-center gap-2 shadow-md ${
               currentStep === steps.length - 1
                 ? 'bg-gradient-india text-white hover:shadow-lg transform hover:-translate-y-1 transition-all'
@@ -360,9 +370,9 @@ export default function Simulator() {
             }`}
           >
             {currentStep === steps.length - 1 ? 'Finish Tutorial' : 'Next Step'} 
-            {currentStep !== steps.length - 1 && <ChevronRight size={18} />}
+            {currentStep !== steps.length - 1 && <ChevronRight size={18} aria-hidden="true" />}
           </button>
-        </div>
+        </nav>
       </div>
     </div>
   );

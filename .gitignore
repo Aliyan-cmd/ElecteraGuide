@@ -40,3 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 apikey.txt
+
+# local logs and scripts
+dev.log
+server.pid
+collect_files.py
+test-use-chat.tsx

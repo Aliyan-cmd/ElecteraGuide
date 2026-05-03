@@ -25,8 +25,15 @@ export default function Navbar() {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, []);
 
   const navLinks = [
@@ -101,31 +108,39 @@ export default function Navbar() {
           {/* Lang Toggle */}
           <button
             onClick={() => setLang(lang === "en" ? "hi" : "en")}
+            aria-label={lang === "en" ? "Switch to Hindi language" : "अंग्रेजी भाषा में बदलें"}
             className={`h-12 px-4 rounded-2xl flex flex-row items-center gap-2 font-black transition-all border ${
               scrolled
                 ? "bg-white border-slate-200 text-[#0F172A] hover:bg-slate-50 shadow-sm"
                 : "bg-white/10 border-white/20 text-white backdrop-blur-md hover:bg-white/20"
             }`}
           >
-            <Globe size={14} className="opacity-40" />
+            <Globe size={14} className="opacity-40" aria-hidden="true" />
             <span className="text-[10px] uppercase">{lang === "en" ? "EN" : "HI"}</span>
           </button>
 
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setIsOpen(!isOpen)}
+            aria-expanded={isOpen}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
             className={`lg:hidden w-12 h-12 rounded-2xl flex items-center justify-center transition-all ${
               scrolled ? "bg-slate-100 text-[#0F172A]" : "bg-white/10 text-white"
             }`}
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu Overlay */}
       {isOpen && (
-        <div className="lg:hidden absolute top-full left-0 right-0 bg-white border-b border-slate-200 p-6 shadow-2xl animate-fade-in-up">
+        <div 
+          className="lg:hidden absolute top-full left-0 right-0 bg-white border-b border-slate-200 p-6 shadow-2xl animate-fade-in-up"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile navigation"
+        >
           <div className="flex flex-col gap-4">
             {navLinks.map((link) => (
               <Link

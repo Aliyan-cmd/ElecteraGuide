@@ -65,6 +65,7 @@ export default function Footer() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`Visit ${link.label} (opens in a new tab)`}
                     className="text-sm text-white/60 hover:text-white transition-colors flex items-center gap-2 group"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-india-green opacity-0 group-hover:opacity-100 transition-all" />
@@ -87,7 +88,11 @@ export default function Footer() {
                 t.footer.elections.rajyaSabha,
               ].map((item) => (
                 <li key={item}>
-                  <a href="#" className="text-sm text-white/60 hover:text-white transition-colors flex items-center gap-2 group">
+                  <a 
+                    href="#" 
+                    aria-label={`Read more about ${item}`}
+                    className="text-sm text-white/60 hover:text-white transition-colors flex items-center gap-2 group"
+                  >
                     <span className="w-1.5 h-1.5 rounded-full bg-ashoka-blue opacity-0 group-hover:opacity-100 transition-all" />
                     {item}
                   </a>

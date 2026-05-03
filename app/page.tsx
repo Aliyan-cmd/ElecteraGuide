@@ -66,9 +66,9 @@ export default function Home() {
   ];
 
   return (
-    <div className={`min-h-screen bg-[#F8FAFC] ${lang === "hi" ? "font-hindi" : ""}`}>
+    <main id="main-content" className={`min-h-screen bg-[#F8FAFC] ${lang === "hi" ? "font-hindi" : ""}`}>
       {/* Premium Hero Section */}
-      <section className="relative pt-40 pb-24 lg:pt-52 lg:pb-40 overflow-hidden bg-hero-pattern text-white">
+      <section aria-labelledby="hero-title" className="relative pt-40 pb-24 lg:pt-52 lg:pb-40 overflow-hidden bg-hero-pattern text-white">
         {/* Animated Background Blobs */}
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#FF9933]/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 animate-pulse" />
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#138808]/10 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/3 animate-pulse" />
@@ -79,7 +79,7 @@ export default function Home() {
             <span className="text-xs font-black uppercase tracking-[0.2em]">{t.hero.badge}</span>
           </div>
 
-          <h1 className="text-5xl lg:text-8xl font-black mb-8 leading-[1.1] animate-fade-in-up delay-100 text-white">
+          <h1 id="hero-title" className="text-5xl lg:text-8xl font-black mb-8 leading-[1.1] animate-fade-in-up delay-100 text-white">
             Empowering Every <br />
             <span className="text-gradient-gold">Indian Voter.</span>
           </h1>
@@ -90,11 +90,11 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 animate-fade-in-up delay-300">
-            <Link href="/how-to-vote" className="btn btn-saffron px-10 py-5 text-lg w-full sm:w-auto group">
+            <Link href="/how-to-vote" className="btn btn-saffron px-10 py-5 text-lg w-full sm:w-auto group" aria-label="Start Your Journey">
               Start Your Journey
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </Link>
-            <Link href="/chat" className="btn btn-ghost px-10 py-5 text-lg w-full sm:w-auto border border-white/20 hover:bg-white/10 transition-colors">
+            <Link href="/chat" className="btn btn-ghost px-10 py-5 text-lg w-full sm:w-auto border border-white/20 hover:bg-white/10 transition-colors" aria-label="Ask Electra AI">
               Ask Electra AI
             </Link>
           </div>
