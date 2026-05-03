@@ -1,0 +1,151 @@
+{
+  "nav": {
+    "home": "Home",
+    "howToVote": "How to Vote",
+    "timeline": "Election Timeline",
+    "eligibility": "Eligibility",
+    "faq": "FAQ",
+    "askAI": "Ask AI",
+    "language": "Language"
+  },
+  "hero": {
+    "badge": "India's Election Guide",
+    "title": "Your Voice,",
+    "titleHighlight": "Your Vote",
+    "subtitle": "ElectraGuide makes Indian elections easy to understand. Get step-by-step guidance on Lok Sabha & State Assembly elections — in your language.",
+    "cta": "Start Learning",
+    "ctaSecondary": "Ask Our AI",
+    "stat1Label": "Registered Voters",
+    "stat1Value": "96.8 Cr+",
+    "stat2Label": "Constituencies",
+    "stat2Value": "543",
+    "stat3Label": "States & UTs",
+    "stat3Value": "36"
+  },
+  "features": {
+    "sectionLabel": "Why ElectraGuide",
+    "title": "Everything You Need to Know",
+    "subtitle": "From voter registration to counting day — we guide every Indian citizen through the democratic process.",
+    "card1Title": "Step-by-Step Voting",
+    "card1Desc": "Clear, illustrated guide to casting your vote — from reaching the booth to pressing the button.",
+    "card2Title": "AI-Powered Chat",
+    "card2Desc": "Ask any election question in English or Hindi and get instant, accurate answers powered by AI.",
+    "card3Title": "Election Timeline",
+    "card3Desc": "Interactive timeline of every election phase — announcement, nomination, voting, and results.",
+    "card4Title": "Eligibility Check",
+    "card4Desc": "Quickly verify if you are eligible to vote and find your nearest polling station.",
+    "card5Title": "Multilingual",
+    "card5Desc": "Available in English and Hindi with more regional languages coming soon.",
+    "card6Title": "Mobile First",
+    "card6Desc": "Designed for rural and urban users alike — fast, lightweight, and works on any device."
+  },
+  "howToVote": {
+    "sectionLabel": "Step-by-Step Guide",
+    "title": "How to Vote in India",
+    "subtitle": "Follow these simple steps on election day",
+    "step1Title": "Carry Your Voter ID",
+    "step1Desc": "Bring your EPIC (Electoral Photo Identity Card) or any of the 12 approved alternative documents like Aadhaar, Passport, or Driving License.",
+    "step2Title": "Find Your Polling Station",
+    "step2Desc": "Locate your assigned polling booth using the voters.eci.gov.in portal or the Voter Helpline App. Your booth number is printed on your Voter Slip.",
+    "step3Title": "Join the Queue",
+    "step3Desc": "Arrive at the polling station and join the queue. Senior citizens and differently-abled voters get priority access through special queues.",
+    "step4Title": "Verify Identity",
+    "step4Desc": "Show your ID to the polling officer at Table 1. They will verify your name on the electoral roll and mark your name.",
+    "step5Title": "Get Inked",
+    "step5Desc": "The presiding officer will apply indelible ink on the index finger of your left hand — a mark of democratic participation.",
+    "step6Title": "Cast Your Vote",
+    "step6Desc": "Press the button next to your chosen candidate's name and symbol on the EVM. A green light and beep confirm your vote. VVPAT slip will appear briefly.",
+    "note": "Remember: Voting is a right, not an obligation. However, every vote counts in shaping India's future!"
+  },
+  "eligibility": {
+    "sectionLabel": "Am I Eligible?",
+    "title": "Voter Eligibility in India",
+    "subtitle": "Three simple criteria to vote in Indian elections",
+    "crit1Title": "Age",
+    "crit1Desc": "You must be at least 18 years of age on the qualifying date (1st January of the year of electoral roll revision).",
+    "crit2Title": "Citizenship",
+    "crit2Desc": "You must be a citizen of India. NRIs can vote if they are enrolled in their home constituency.",
+    "crit3Title": "Residence",
+    "crit3Desc": "You must be ordinarily resident in the constituency where you wish to register.",
+    "registerTitle": "How to Register",
+    "registerDesc": "Register online at voters.eci.gov.in using Form 6, or visit your nearest Booth Level Officer (BLO) for offline registration.",
+    "registerBtn": "Register to Vote"
+  },
+  "timeline": {
+    "sectionLabel": "Election Calendar",
+    "title": "2024 Lok Sabha Election Phases",
+    "subtitle": "India's General Election conducted in 7 phases",
+    "phase": "Phase",
+    "votingDate": "Voting Date",
+    "states": "States/UTs",
+    "seats": "Seats",
+    "resultsDay": "Result Declaration",
+    "resultsDate": "June 4, 2024"
+  },
+  "chat": {
+    "title": "Ask ElectraGuide AI",
+    "subtitle": "Get instant answers about Indian elections",
+    "placeholder": "Ask anything about elections... (e.g. How do I register to vote?)",
+    "send": "Send",
+    "thinking": "ElectraGuide is thinking...",
+    "greeting": "Namaste! 🙏 I'm ElectraGuide AI. I can answer your questions about Indian elections, voting procedures, eligibility, and more. How can I help you today?",
+    "disclaimer": "AI responses are for informational purposes. Visit voters.eci.gov.in for official information.",
+    "suggestedQuestions": [
+      "How do I check if my name is on the voter list?",
+      "What documents do I need to vote?",
+      "What is EVM and how does it work?",
+      "Can I vote if I have lost my Voter ID?"
+    ]
+  },
+  "faq": {
+    "sectionLabel": "Common Questions",
+    "title": "Frequently Asked Questions",
+    "subtitle": "Everything first-time voters need to know",
+    "items": [
+      {
+        "q": "How old do I need to be to vote in India?",
+        "a": "You must be at least 18 years old on the qualifying date (January 1st of the electoral roll revision year) to register as a voter in India."
+      },
+      {
+        "q": "Can I vote without a Voter ID card?",
+        "a": "Yes! Even without an EPIC (Voter ID), you can vote using 12 alternative documents: Aadhaar card, MNREGA job card, Passbooks with photo from Bank/Post Office, Health smart card, Driving License, PAN card, Smart card by RGI, Passport, Pension document with photo, NPR Smart card, Disability certificate, and Official identity documents issued by Central/State government."
+      },
+      {
+        "q": "What is NOTA and how does it work?",
+        "a": "NOTA (None of the Above) is an option on the EVM that allows voters to reject all candidates. Press the NOTA button if you don't wish to vote for any candidate. NOTA votes are counted but cannot win an election."
+      },
+      {
+        "q": "What is the Model Code of Conduct?",
+        "a": "The Model Code of Conduct (MCC) is a set of guidelines issued by the Election Commission of India to regulate political parties and candidates during elections. It comes into effect from the date of election announcement to the result date."
+      },
+      {
+        "q": "What is EVM?",
+        "a": "EVM (Electronic Voting Machine) is a standalone electronic device used in Indian elections since 1982. It consists of a Control Unit (with the polling officer) and a Balloting Unit (in the voting compartment). It is tamper-proof and stores up to 2000 votes."
+      },
+      {
+        "q": "Can NRIs vote in Indian elections?",
+        "a": "Yes, NRIs (Non-Resident Indians) can register as overseas electors in their home constituency using Form 6A. However, they must travel back to India to cast their vote in person as postal/proxy voting is not yet available for NRIs."
+      }
+    ]
+  },
+  "footer": {
+    "tagline": "Empowering Indian Democracy through Information",
+    "disclaimer": "ElectraGuide is an independent educational platform. All official election information is sourced from the Election Commission of India (ECI). For official notifications, visit eci.gov.in",
+    "links": {
+      "title": "Quick Links",
+      "voterPortal": "Voter Services Portal",
+      "eciWebsite": "ECI Official Website",
+      "voterHelpline": "Voter Helpline 1950",
+      "cVigil": "cVIGIL App"
+    },
+    "elections": {
+      "title": "Election Types",
+      "lokSabha": "Lok Sabha Elections",
+      "stateAssembly": "State Assembly Elections",
+      "rajyaSabha": "Rajya Sabha Elections",
+      "byElections": "By-Elections"
+    },
+    "copyright": "© 2024 ElectraGuide. Built for the people of India. 🇮🇳",
+    "madeWith": "Made with ❤️ for Indian Democracy"
+  }
+}
