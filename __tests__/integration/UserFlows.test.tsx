@@ -147,7 +147,7 @@ describe("Integration: Voting Simulator complete journey", () => {
     render(<Simulator />);
 
     // Verify we start at step 1
-    expect(screen.getByText("Check Eligibility")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Check Eligibility" })).toBeInTheDocument();
 
     const clickNext = () =>
       fireEvent.click(screen.getByRole("button", { name: /next|continue|finish|complete/i }));
@@ -193,10 +193,12 @@ describe("Integration: Constituency search flow", () => {
     render(<ConstituencyDashboard />);
     const input = screen.getByPlaceholderText(/PIN code or constituency name/i);
 
-    await userEvent.type(input, "110001");
+    fireEvent.change(input, { target: { value: "110001" } });
     fireEvent.submit(input.closest("form")!);
 
-    await act(async () => { jest.advanceTimersByTime(1000); });
+    await act(async () => {
+      jest.advanceTimersByTime(1000);
+    });
 
     expect(screen.getByText("New Delhi")).toBeInTheDocument();
   });
@@ -217,7 +219,8 @@ describe("Integration: Timeline exploration flow", () => {
     ];
 
     stages.forEach((title) => {
-      const card = screen.getByText(title).closest("[class*='cursor-pointer']")!;
+      const card = screen.getByText(title).closest("button") || screen.getByText(title).closest("[role='button']") || screen.getByText(title).closest("[class*='cursor-pointer']");
+      if (!card) throw new Error(`Could not find card for stage: ${title}`);
       fireEvent.click(card);
       // Verify stage details visible — we just confirm no crash and card exists
       expect(card).toBeInTheDocument();

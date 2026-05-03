@@ -53,67 +53,77 @@ const enTranslations = {
 
 // ─── Module-level mocks ───────────────────────────────────────────────────────
 
+export const LanguageContextValue = {
+  t: {
+    nav: { home: "Home", chat: "Chat", simulator: "Simulator", constituency: "Constituency" },
+    chat: {
+      greeting: "Namaste! 🙏 I'm ElectraGuide AI. How can I help you today?",
+      placeholder: "Ask anything about elections...",
+      disclaimer: "Information is sourced from ECI.",
+      suggestedQuestions: [
+        "How do I register to vote?",
+        "What is the voting age?",
+        "Where is my polling booth?",
+      ],
+      send: "Send",
+      thinking: "Thinking..."
+    },
+    constituency: {
+      title: "My Constituency",
+      subtitle: "Find details about your local constituency.",
+      searchPlaceholder: "Enter PIN code or constituency name...",
+      searchBtn: "Search",
+      notFound: "No records found.",
+      representative: "Representative",
+      pastResults: "Past Results",
+      keyCandidates: "Key Candidates"
+    },
+    simulator: {
+      title: "Voting Simulator",
+      step1Title: "Check Eligibility",
+      step2Title: "Register",
+      step3Title: "Find Booth",
+      step4Title: "Cast Vote",
+      step5Title: "After Voting",
+    },
+    process: {
+      stages: [
+        { title: "Election Announcement", description: "MCC comes into force." },
+        { title: "Nomination", description: "Candidates file papers." },
+        { title: "Scrutiny", description: "Papers are checked." },
+        { title: "Campaigning", description: "Parties rally." },
+        { title: "Voting Day", description: "Go out and vote." },
+        { title: "Counting", description: "Votes are tallied." },
+        { title: "Results", description: "Winner declared." },
+      ]
+    }
+  },
+  lang: "en",
+  setLang: jest.fn(),
+};
+
 jest.mock("@/components/LanguageContext", () => {
   const React = require("react");
   return {
-    useLanguage: jest.fn(() => ({
-      t: {
-        nav: { home: "Home", chat: "Chat", simulator: "Simulator", constituency: "Constituency" },
-        chat: {
-          greeting: "Namaste! 🙏 I'm ElectraGuide AI. How can I help you today?",
-          placeholder: "Ask anything about elections...",
-          disclaimer: "Information is sourced from ECI.",
-          suggestedQuestions: [
-            "How do I register to vote?",
-            "What is the voting age?",
-            "Where is my polling booth?",
-          ],
-          send: "Send",
-          thinking: "Thinking..."
-        },
-        constituency: {
-          title: "My Constituency",
-          subtitle: "Find details about your local constituency.",
-          searchPlaceholder: "Enter PIN code or constituency name...",
-          searchBtn: "Search",
-          notFound: "No records found.",
-          representative: "Representative",
-          pastResults: "Past Results",
-          keyCandidates: "Key Candidates"
-        },
-        simulator: {
-          title: "Voting Simulator",
-          step1Title: "Check Eligibility",
-          step2Title: "Register",
-          step3Title: "Find Booth",
-          step4Title: "Cast Vote",
-          step5Title: "After Voting",
-        },
-        process: {
-          stages: [
-            { title: "Election Announcement", description: "MCC comes into force." },
-          ]
-        }
-      },
-      lang: "en",
-      setLang: jest.fn(),
-    })),
+    useLanguage: jest.fn(() => require("./setup").LanguageContextValue),
     LanguageProvider: ({ children }: { children: React.ReactNode }) =>
       React.createElement(React.Fragment, null, children),
   };
 });
 
+export const UserProgressContextValue = {
+  points: 0,
+  badges: [],
+  addPoints: jest.fn(),
+  unlockBadge: jest.fn(),
+  completedSteps: [],
+  markStepComplete: jest.fn(),
+};
+
 jest.mock("@/components/UserProgressContext", () => {
   const React = require("react");
   return {
-    useUserProgress: jest.fn(() => ({
-      points: 0,
-      badges: [],
-      addPoints: jest.fn(),
-      unlockBadge: jest.fn(),
-      completedSteps: [],
-      markStepComplete: jest.fn(),
-    })),
+    useUserProgress: jest.fn(() => require("./setup").UserProgressContextValue),
     UserProgressProvider: ({ children }: { children: React.ReactNode }) =>
       React.createElement(React.Fragment, null, children),
   };

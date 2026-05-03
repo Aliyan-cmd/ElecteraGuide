@@ -343,7 +343,7 @@ export default function Simulator() {
                 )}
               </div>
             </div>
-          </motion.div>
+          </motion.section>
         </AnimatePresence>
 
         <nav className="mt-auto pt-8 flex justify-between items-center border-t border-gray-100" aria-label="Simulation navigation">

@@ -29,13 +29,16 @@ describe("Simulator component", () => {
 
   it("starts at Step 1 (Check Eligibility)", () => {
     render(<Simulator />);
-    expect(screen.getByText("Check Eligibility")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Check Eligibility" })).toBeInTheDocument();
   });
 
   it("shows all step names in the step indicator", () => {
     render(<Simulator />);
     ["Check Eligibility", "Register", "Find Booth", "Cast Vote", "After Voting"].forEach(
-      (title) => expect(screen.getByText(title)).toBeInTheDocument()
+      (title) => {
+        const elements = screen.getAllByText(title);
+        expect(elements.length).toBeGreaterThan(0);
+      }
     );
   });
 
@@ -62,9 +65,9 @@ describe("Simulator component", () => {
   it("goes back to previous step when 'Previous' is clicked", () => {
     render(<Simulator />);
     fireEvent.click(screen.getByRole("button", { name: /next|continue/i }));
-    expect(screen.getByText("Register")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Register" })).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: /prev|back|previous/i }));
-    expect(screen.getByText("Check Eligibility")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Check Eligibility" })).toBeInTheDocument();
   });
 
   it("steps through all 5 steps without error", () => {
